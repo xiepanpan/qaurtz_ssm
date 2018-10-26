@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.xiepanpan.dao.IUserDao">
-
+    <sql id="base_column_list">
+        id,user_name,password,age
+    </sql>
+    <select id="findUser" resultType="com.xiepanpan.entity.User" parameterType="com.xiepanpan.entity.User">
+        SELECT
+        <include refid="base_column_list"/>
+        from user_t
+        WHERE user_name = #{userName,jdbcType=VARCHAR} AND #{password,jdbcType=VARCHAR}
+    </select>
 </mapper>
