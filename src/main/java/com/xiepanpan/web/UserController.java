@@ -46,7 +46,7 @@ public class UserController {
         if (user!=null) {
             HttpSession session = request.getSession();
             session.setAttribute(CommonConstant.LONGIN_TOKEN,UUID.randomUUID().toString().replace("-",""));
-            session.setAttribute("name",username);
+            session.setAttribute("username",username);
             response.sendRedirect(request.getContextPath()+"/quartz/listJob");
         }else {
             request.setAttribute("message","用户名或密码错误");
