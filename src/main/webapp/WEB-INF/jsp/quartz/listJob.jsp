@@ -44,8 +44,7 @@
     <span><a href="${pageContext.request.contextPath}/user/logout">退出</a></span>
 </div>
 <h2 style="text-align: center">定时任务后台管理系统</h2>
-<div align="center"><span>111</span></div>
-<table id="table_report" class="table " cellpadding="0" cellspacing="0">
+<table id="table_report" class="table table-striped table-bordered table-hover " cellpadding="0" cellspacing="0">
     <thead>
     <tr>
         <th class="center">任务组名称</th>
@@ -108,6 +107,7 @@
                     <td class="center" style="width: auto;">
                         <a class="btn btn-minier btn-success" onclick="editJob('${jobEntity.jobName}','${jobEntity.jobGroup}')">编辑</a>
                         <a class="btn btn-minier btn-warning" onclick="pauseJob('${jobEntity.jobName}','${jobEntity.jobGroup}')">暂停</a>
+                        <br/>
                         <a class="btn btn-minier btn-purple" onclick="resumeJob('${jobEntity.jobName}','${jobEntity.jobGroup}')">恢复</a>
                         <a class="btn btn-minier btn-danger"
                            onclick="deleteJob('${jobEntity.jobName}','${jobEntity.jobGroup}','${jobEntity.triggerName}','${jobEntity.triggerGroupName}')">删除</a>

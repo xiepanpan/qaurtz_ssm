@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * describe:过滤器 跳转到登录页面
+ * describe:过滤器 跳转到登录页面 项目一开始进入
  *
  * @author xiepanpan
  * @date 2018/10/26

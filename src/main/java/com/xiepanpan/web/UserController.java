@@ -53,4 +53,16 @@ public class UserController {
         }
         return "user/login";
     }
+
+    /**
+     * 注销
+     * @param request
+     * @return
+     */
+    @RequestMapping("logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        session.removeAttribute(CommonConstant.LONGIN_TOKEN);
+        return "redirect:/user/toLogin";
+    }
 }
