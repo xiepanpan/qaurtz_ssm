@@ -13,9 +13,13 @@
     <title>编辑任务</title>
 </head>
 <body style="background: beige;margin: 171px 600px 200px;">
-<from:form action="${pageContext.request.contextPath}/quartz.edit" modelAttribute="triggerEntity" method="post">
+<from:form action="${pageContext.request.contextPath}/quartz/edit" modelAttribute="triggerEntity" method="put">
     <span>编辑触发器Trigger</span>
     <hr/>
+    <input name="oldJobName" type="hidden" value="${triggerEntity.jobName}" />
+    <input name="oldJobGroupName" type="hidden" value="${triggerEntity.jobGroupName}" />
+    <input name="oldTriggerName" type="hidden" value="${triggerEntity.triggerName}" />
+    <input name="oldTriggerGroup" type="hidden" value="${triggerEntity.triggerGroupName}" />
     <table>
         <tr>
             <td>时间表达式<br>cronExpression</td>

@@ -11,11 +11,11 @@
 			height: 600px;
 		}
 		.btn{border: 0;background-color: #428bca;}
-		
+
 		
 	</style>
 </head>
-<body background="${pageContext.request.contextPath }/static/image/background.jpg" style="background-attachment: scroll;margin: auto;">
+<body background="${pageContext.request.contextPath }/static/image/login-bg.jpg" style=" background-size:cover" >
 	
 	<form  class="form" action="${pageContext.request.contextPath }/user/login" method="post">
 		<span style="color: red;">${message }</span><br/>

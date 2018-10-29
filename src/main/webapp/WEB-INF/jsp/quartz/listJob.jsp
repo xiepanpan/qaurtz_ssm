@@ -44,6 +44,7 @@
     <span><a href="${pageContext.request.contextPath}/user/logout">退出</a></span>
 </div>
 <h2 style="text-align: center">定时任务后台管理系统</h2>
+<div align="center"><span>111</span></div>
 <table id="table_report" class="table " cellpadding="0" cellspacing="0">
     <thead>
     <tr>
@@ -105,10 +106,11 @@
                     </td>
                     <td class="center" style="width: auto;">${jobEntity.jobClass}</td>
                     <td class="center" style="width: auto;">
-                        <a class="btn btn-minier btn-success" onclick="edit(${jobEntity.jobName},${jobEntity.jobGroup})">编辑</a>
-                        <a class="btn btn-minier btn-warning">暂停</a>
-                        <a class="btn btn-minier btn-purple">恢复</a>
-                        <a class="btn btn-minier btn-danger">删除</a>
+                        <a class="btn btn-minier btn-success" onclick="editJob('${jobEntity.jobName}','${jobEntity.jobGroup}')">编辑</a>
+                        <a class="btn btn-minier btn-warning" onclick="pauseJob('${jobEntity.jobName}','${jobEntity.jobGroup}')">暂停</a>
+                        <a class="btn btn-minier btn-purple" onclick="resumeJob('${jobEntity.jobName}','${jobEntity.jobGroup}')">恢复</a>
+                        <a class="btn btn-minier btn-danger"
+                           onclick="deleteJob('${jobEntity.jobName}','${jobEntity.jobGroup}','${jobEntity.triggerName}','${jobEntity.triggerGroupName}')">删除</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -132,8 +134,50 @@
     function add() {
         window.location.href = url + "/quartz/toAdd";
     }
-    function edit(jobName,jobGroup) {
+    function editJob(jobName,jobGroup) {
         window.location.href = url + "/quartz/toEdit?jobName="+jobName+"&jobGroup="+jobGroup;
+    }
+    function pauseJob(jobName,jobGroup) {
+        $.ajax({
+            url:url+"/quartz/pauseJob",
+            data:{jobName:jobName,jobGroup:jobGroup},
+            dataType:'json',
+            type:"PUT",
+            success:function (data) {
+                if (data.status=='success') {
+                    window.location.reload();
+                }
+            }
+        });
+    }
+    function resumeJob(jobName,jobGroup) {
+        $.ajax({
+            url:url+"/quartz/resumeJob",
+            data:{jobName:jobName,jobGroup:jobGroup},
+            dataType:'json',
+            type:"PUT",
+            success:function (data) {
+                if (data.status=='success') {
+
+                    window.location.reload();
+                }
+            }
+        });
+    }
+    function deleteJob(jobName,jobGroupName,triggerName,triggerGroupName) {
+        var jsonstr = {jobName:jobName,jobGroupName:jobGroupName,triggerName:triggerName,triggerGroupName:triggerGroupName};
+        $.ajax({
+            url:url+"/quartz/deleteJob",
+            data:JSON.stringify(jsonstr),
+            contentType:"application/json",
+            dataType:'json',
+            type:"DELETE",
+            success:function (data) {
+                if (data.status=='success') {
+                    window.location.reload();
+                }
+            }
+        });
     }
 </script>
 </body>
